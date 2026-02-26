@@ -28,13 +28,13 @@ module Groundwork
 
       private_class_method def self.event_class_for(event_name)
         # Dynamically resolve or create a RailsEventStore::Event subclass
-        # scoped under Groundwork::Events so host apps can also define named event classes.
-        const_name = "Groundwork::Events::#{event_name}"
+        # scoped under Groundwork::CaseManagement::Events so host apps can also define named event classes.
+        const_name = "Groundwork::CaseManagement::Events::#{event_name}"
         begin
           const_name.constantize
         rescue NameError
           klass = Class.new(RailsEventStore::Event)
-          Groundwork::Events.const_set(event_name, klass)
+          Groundwork::CaseManagement::Events.const_set(event_name, klass)
           klass
         end
       end
