@@ -7,7 +7,7 @@ module Groundwork
   # This is a concrete table shared across all case types via polymorphic
   # case_id / case_type columns.
   class WorkflowTransition < ApplicationRecord
-    include Statesman::Adapters::ActiveRecord
+    include Statesman::Adapters::ActiveRecordTransition
 
     belongs_to :case, polymorphic: true
 
