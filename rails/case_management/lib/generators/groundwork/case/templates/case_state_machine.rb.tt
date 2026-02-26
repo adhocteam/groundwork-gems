@@ -1,0 +1,29 @@
+# frozen_string_literal: true
+
+# Statesman state machine for <%= class_name %>.
+# States and transitions mirror <%= workflow_name %>.
+# Update this file when you add or rename workflow steps.
+class <%= class_name %>StateMachine
+  include Statesman::Machine
+
+  # States are derived from the workflow definition.
+  # Add each step name here as a state:
+  state :submit_application, initial: true
+  # state :prescreening
+  # state :examiner_review
+  # state :make_determination
+  state :closed
+
+  # Mirror the transitions declared in <%= workflow_name %>:
+  transition from: :submit_application, to: :closed  # update to match your workflow
+
+  guard_transition(to: :closed) do |kase|
+    # Add any guard conditions here (e.g. required fields before closing)
+    true
+  end
+
+  after_transition do |kase, transition|
+    kase.current_step = transition.to_state
+    # transition.metadata includes event_name and any custom metadata
+  end
+end

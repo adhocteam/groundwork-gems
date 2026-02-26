@@ -1,0 +1,22 @@
+# frozen_string_literal: true
+
+<%= class_name %> = Groundwork::CaseManagement::WorkflowDefinition.new do |w|
+  # Declare steps in execution order.
+  # Supported step types: applicant_step, system_step, staff_step, third_party_step
+  #
+  # w.applicant_step  :submit_application
+  # w.system_step     :prescreening,       <%= case_class_name %>PrescreeningJob
+  # w.staff_step      :examiner_review,    <%= case_class_name %>ReviewTask
+  # w.staff_step      :make_determination, <%= case_class_name %>DeterminationTask
+
+  # Declare the starting step (triggered by the ApplicationForm submit event)
+  # w.on_start :submit_application
+
+  # Declare transitions: from step → on event name → to step
+  # w.transition from: :submit_application, on: "<%= case_class_name.sub("Case", "ApplicationForm") %>Submitted", to: :prescreening
+  # w.transition from: :prescreening,       on: "<%= case_class_name %>PrescreeningCleared",                      to: :examiner_review
+  # w.transition from: :prescreening,       on: "<%= case_class_name %>PrescreeningDenied",                       to: :closed
+  # w.transition from: :examiner_review,    on: "<%= case_class_name %>ReviewComplete",                           to: :make_determination
+  # w.transition from: :make_determination, on: "<%= case_class_name %>Approved",                                 to: :closed
+  # w.transition from: :make_determination, on: "<%= case_class_name %>Denied",                                   to: :closed
+end

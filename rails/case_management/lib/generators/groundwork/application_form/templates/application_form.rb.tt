@@ -1,0 +1,15 @@
+# frozen_string_literal: true
+
+class <%= class_name %> < Groundwork::ApplicationForm
+<% gov_attributes.each do |attr| -%>
+  gov_attribute :<%= attr.name %>, :<%= attr.type %>
+<% end -%>
+<% plain_attributes.each do |attr| -%>
+  attribute :<%= attr.name %>, :<%= attr.type %>
+<% end -%>
+
+  # Add submit-time validations here (run only when applicant clicks Submit,
+  # not on intermediate saves):
+  #
+  # validates :license_type, presence: true, on: :submit
+end

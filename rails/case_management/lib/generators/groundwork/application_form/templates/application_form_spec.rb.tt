@@ -1,0 +1,24 @@
+# frozen_string_literal: true
+
+require "rails_helper"
+
+RSpec.describe <%= class_name %>, type: :model do
+  subject(:form) { build(:<%= file_name %>) }
+
+  describe "#submit!" do
+    context "when valid" do
+      it "transitions status to submitted" do
+        expect { form.submit! }.to change { form.status }.from("draft").to("submitted")
+      end
+
+      it "sets submitted_at" do
+        expect { form.submit! }.to change { form.submitted_at }.from(nil)
+      end
+
+      it "becomes immutable after submission" do
+        form.submit!
+        expect { form.save! }.to raise_error(ActiveRecord::RecordInvalid)
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+# frozen_string_literal: true
+
+class <%= router_class_name %> < Groundwork::CaseManagement::WorkflowRouter
+  workflow  <%= class_name %>
+  case_class <%= case_class_name %>
+
+  # Override build_case if your case needs more than application_form_id:
+  #
+  # def build_case(event)
+  #   <%= case_class_name %>.new(
+  #     application_form_id: event.data[:application_form_id],
+  #     # ...additional attributes
+  #   )
+  # end
+end

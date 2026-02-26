@@ -1,0 +1,6 @@
+# frozen_string_literal: true
+
+class <%= class_name %> < Groundwork::Case
+  # Add program-specific columns here if needed.
+  # Base columns (application_form_id, current_step, status, facts) are inherited.
+end

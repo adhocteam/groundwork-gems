@@ -1,0 +1,14 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+gemspec
+
+gem "groundwork-rules_engine",          path: "../rules_engine"
+gem "groundwork-government_attributes", path: "../government_attributes"
+
+group :development, :test do
+  gem "rspec-rails",        "~> 7.0"
+  gem "factory_bot_rails"
+  gem "sqlite3",            "~> 2.0"
+end
