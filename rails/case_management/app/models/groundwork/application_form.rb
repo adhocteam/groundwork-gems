@@ -30,7 +30,7 @@ module Groundwork
     enum :status, { draft: 0, submitted: 1 }, prefix: false
     protected attr_writer :status
 
-    before_update :prevent_modification_if_submitted, if: :was_submitted?
+    validate :prevent_modification_if_submitted, on: :update, if: :submitted_and_not_transitioning?
     after_commit  :publish_submitted_event,            if: :submitted?, on: %i[create update]
 
     # Validates with the :submit context, then marks the form as submitted.
@@ -61,13 +61,12 @@ module Groundwork
 
     private
 
-    def was_submitted?
-      status_before_last_save == "submitted" || status_previously_was == "submitted"
+    def submitted_and_not_transitioning?
+      submitted? && !will_save_change_to_status?
     end
 
     def prevent_modification_if_submitted
       errors.add(:base, "cannot be modified after submission")
-      throw :abort
     end
 
     def publish_submitted_event
