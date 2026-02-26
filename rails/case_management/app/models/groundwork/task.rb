@@ -65,6 +65,14 @@ module Groundwork
       save!
     end
 
+    def incomplete?
+      !completed?
+    end
+
+    def overdue?
+      due_on.present? && due_on < Date.current && incomplete?
+    end
+
     private
 
     def publish_status_changed
