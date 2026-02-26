@@ -18,6 +18,12 @@ module Groundwork
         g.fixture_replacement :factory_bot, dir: "spec/factories"
       end
 
+      initializer "groundwork.statesman" do
+        Statesman.configure do
+          storage_adapter Statesman::Adapters::ActiveRecord
+        end
+      end
+
       initializer "groundwork.event_store" do |app|
         # Configure RailsEventStore if not already configured by the host app.
         # Host apps can override this in their own initializer before this runs.

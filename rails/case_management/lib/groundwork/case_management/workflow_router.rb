@@ -97,7 +97,7 @@ module Groundwork
         next_step = workflow.next_step(kase.current_step, event_name)
         return unless next_step
 
-        kase.state_machine.transition_to!(next_step, event_name: event_name)
+        kase.state_machine.transition_to!(next_step, { event_name: event_name })
         kase.current_step = next_step
         kase.save!
 
