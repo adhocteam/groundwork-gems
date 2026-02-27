@@ -3,6 +3,7 @@
 module Groundwork
   class ApplicationFormPolicy < ApplicationPolicy
     # Any authenticated user can start a new application.
+    def new?     = create?
     def create?
       user.present?
     end
