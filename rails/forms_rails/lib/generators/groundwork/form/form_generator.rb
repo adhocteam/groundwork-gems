@@ -76,10 +76,10 @@ module Groundwork
 
       def generate_model
         active = @attributes.reject { |a| a[:type] == :skip }
-        attr_string = active.map { |a| "#{a[:name]}:#{a[:type]}" }.join(" ")
+        args   = ["#{class_name}Form"] + active.map { |a| "#{a[:name]}:#{a[:type]}" }
         Rails::Generators.invoke(
           "groundwork:application_form",
-          ["#{class_name}Form #{attr_string}"],
+          args,
           behavior: behavior,
           destination_root: destination_root
         )
