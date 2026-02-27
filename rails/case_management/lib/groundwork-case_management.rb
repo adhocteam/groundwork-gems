@@ -3,6 +3,7 @@
 require "rails"
 require "statesman"
 require "pundit"
+require "groundwork-forms_rails"
 require "groundwork-rules_engine"
 require "groundwork-government_attributes"
 

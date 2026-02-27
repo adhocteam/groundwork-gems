@@ -15,6 +15,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "statesman",                    ">= 12.0"
   spec.add_dependency "rails_event_store",            ">= 2.0"
   spec.add_dependency "pundit",                       ">= 2.5"
+  spec.add_dependency "groundwork-forms_rails",       ">= 0.1"
   spec.add_dependency "groundwork-rules_engine",      ">= 0.1"
   spec.add_dependency "groundwork-government_attributes", ">= 0.1"
 
