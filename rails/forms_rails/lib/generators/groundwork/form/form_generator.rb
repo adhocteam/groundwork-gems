@@ -119,6 +119,31 @@ module Groundwork
                  "app/views/#{ns}/#{plural_name}/edit_#{@review_step}.html.erb"
       end
 
+      def print_field_report
+        say "\nFIELD MAPPING REPORT — #{class_name}Form"
+        say "─" * 60
+        say format("%-45s → %-25s %-8s %s", "PDF field", "Ruby attribute", "type", "step")
+
+        step_for_field = {}
+        @step_assignments.each do |step, pages|
+          (pages || []).each do |page|
+            (@fields_by_page[page] || []).each do |f|
+              step_for_field[f["id"]] = step
+            end
+          end
+        end
+
+        @attributes.each do |attr|
+          type_str = attr[:type] == :skip ? "SKIPPED" : attr[:type].to_s
+          step_str = step_for_field[attr[:id]] || "—"
+          say format("%-45s → %-25s %-8s %s", attr[:id].to_s.last(45), attr[:name], type_str, step_str)
+        end
+
+        say ""
+        say "WARN: #{@skip_count} signature field(s) skipped" if @skip_count > 0
+        say "WARN: #{@paired_count} paired checkboxes collapsed to #{@paired_count / 2} boolean field(s)" if @paired_count > 0
+      end
+
       private
 
       def parse_page_range(input)

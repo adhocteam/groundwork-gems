@@ -58,6 +58,14 @@ RSpec.describe Groundwork::Generators::FormGenerator do
     )
   end
 
+  it "prints a field mapping report after generation" do
+    output = capture_stdout { run_generator }
+    expect(output).to include("FIELD MAPPING REPORT")
+    expect(output).to include("name_applicant")
+    expect(output).to include("string")
+    expect(output).to include("start")
+  end
+
   it "prints steps and pages found in the manifest" do
     output = capture_stdout { run_generator }
     expect(output).to include("Found 2 steps in journey: start, review-submit")
