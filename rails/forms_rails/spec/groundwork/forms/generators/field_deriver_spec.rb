@@ -34,6 +34,10 @@ RSpec.describe Groundwork::Forms::Generators::FieldDeriver do
     it "falls back gracefully on an empty string" do
       expect(deriver.call("")).to eq("")
     end
+
+    it "strips punctuation from words to produce valid identifiers" do
+      expect(deriver.call("Licensed? Yes")).to eq("licensed_yes")
+    end
   end
 
   describe "#call_all" do

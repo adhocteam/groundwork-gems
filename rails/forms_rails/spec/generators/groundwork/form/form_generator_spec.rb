@@ -166,4 +166,10 @@ RSpec.describe Groundwork::Generators::FormGenerator do
 
     expect(generated_args.first).to include("AtfExplosivesLicenseForm")
   end
+
+  it "prints the correct paired checkbox warning" do
+    output = capture_stdout { run_generator }
+    # fixture has 1 yes/no pair → 2 checkboxes collapsed to 1 boolean
+    expect(output).to include("2 yes/no checkboxes collapsed to 1 boolean field(s)")
+  end
 end

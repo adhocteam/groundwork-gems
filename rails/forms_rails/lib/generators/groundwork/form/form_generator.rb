@@ -141,7 +141,7 @@ module Groundwork
 
         say ""
         say "WARN: #{@skip_count} signature field(s) skipped" if @skip_count > 0
-        say "WARN: #{@paired_count} paired checkboxes collapsed to #{@paired_count / 2} boolean field(s)" if @paired_count > 0
+        say "WARN: #{@paired_count * 2} yes/no checkboxes collapsed to #{@paired_count} boolean field(s)" if @paired_count > 0
       end
 
       private
@@ -149,6 +149,9 @@ module Groundwork
       def parse_page_range(input)
         return [] if input.empty?
         parts = input.split("-").map(&:to_i)
+        if parts.length == 2 && parts.first > parts.last
+          raise Thor::Error, "ERROR: Invalid page range '#{input}' — start must be ≤ end"
+        end
         (parts.first..parts.last).to_a
       end
 
@@ -182,8 +185,8 @@ module Groundwork
 
       def tooltip_or_label_for(field)
         tu = field.dig("pdf", "tu").to_s
-        tu.empty? ? field.dig("label", "text").to_s : tu
-           .then { |t| t.sub(/\A\d+\.\s*/, "").gsub(/\s*\([^)]*\)/, "").strip }
+        raw = tu.empty? ? field.dig("label", "text").to_s : tu
+        raw.sub(/\A\d+\.\s*/, "").gsub(/\s*\([^)]*\)/, "").strip
       end
     end
   end

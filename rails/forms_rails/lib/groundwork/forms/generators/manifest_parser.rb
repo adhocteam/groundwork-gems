@@ -33,6 +33,8 @@ module Groundwork
             pages:          fields_by_page.keys,
             fields_by_page: fields_by_page
           )
+        rescue KeyError => e
+          raise Error, "malformed manifest: #{e.message}"
         end
 
         private

@@ -35,9 +35,16 @@ RSpec.describe Groundwork::Forms::Generators::ManifestParser do
     expect(field.keys).to include("id", "kind", "page", "pdf", "label")
   end
 
-  it "raises an error when the fields file does not exist" do
+  it "raises an error when form-fields.json is missing the 'fields' key" do
+    bad_json = Tempfile.new(["bad-fields", ".json"])
+    bad_json.write('{"source": {}}')
+    bad_json.flush
+
     expect {
-      described_class.call(fields_path: "/no/such/file.json", journey_path: journey_path)
-    }.to raise_error(Groundwork::Forms::Generators::ManifestParser::Error, /not found/)
+      described_class.call(fields_path: bad_json.path, journey_path: journey_path)
+    }.to raise_error(Groundwork::Forms::Generators::ManifestParser::Error, /malformed manifest/)
+
+    bad_json.close
+    bad_json.unlink
   end
 end

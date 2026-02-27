@@ -30,7 +30,9 @@ module Groundwork
         end
 
         def significant_words(text)
-          text.split(/\s+/).reject { |w| FILLER_WORDS.include?(w.downcase) }
+          text.split(/\s+/)
+              .map { |w| w.gsub(/[^a-z0-9]/i, "") }
+              .reject { |w| w.empty? || FILLER_WORDS.include?(w.downcase) }
         end
 
         def deduplicate(names)
