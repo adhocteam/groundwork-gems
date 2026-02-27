@@ -1,0 +1,14 @@
+{
+  "journeyId": "test-journey",
+  "version": 1,
+  "steps": {
+    "start": {
+      "allowed": true,
+      "trace": { "decisionId": "step:start", "checks": [] }
+    },
+    "review-submit": {
+      "allowed": true,
+      "trace": { "decisionId": "step:review-submit", "checks": [] }
+    }
+  }
+}

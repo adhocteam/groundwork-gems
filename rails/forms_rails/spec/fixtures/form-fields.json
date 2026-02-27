@@ -1,0 +1,75 @@
+{
+  "source": { "path": "test.pdf", "pages": 2 },
+  "fields": [
+    {
+      "id": "Page1.TextField1",
+      "kind": "text",
+      "label": { "text": "Please print clearly" },
+      "page": 1,
+      "pdf": {
+        "tu": "1. Name of Applicant (List individual, corporation, LLC)",
+        "flags": { "multiline": false, "required": false }
+      }
+    },
+    {
+      "id": "Page1.TextField2",
+      "kind": "text",
+      "label": { "text": "Trade Name" },
+      "page": 1,
+      "pdf": {
+        "tu": "2. Trade Name (DBA)",
+        "flags": { "multiline": false, "required": false }
+      }
+    },
+    {
+      "id": "Page1.TextField3",
+      "kind": "text",
+      "label": { "text": "Additional notes" },
+      "page": 1,
+      "pdf": {
+        "tu": "Notes",
+        "flags": { "multiline": true, "required": false }
+      }
+    },
+    {
+      "id": "Page1.CheckBox1",
+      "kind": "checkbox",
+      "label": { "text": "Yes" },
+      "page": 1,
+      "pdf": {
+        "tu": "3. Licensed? Yes",
+        "flags": { "required": false }
+      }
+    },
+    {
+      "id": "Page1.CheckBox2",
+      "kind": "checkbox",
+      "label": { "text": "No" },
+      "page": 1,
+      "pdf": {
+        "tu": "3. Licensed? No",
+        "flags": { "required": false }
+      }
+    },
+    {
+      "id": "Page1.Signature1",
+      "kind": "signature",
+      "label": { "text": "Signature" },
+      "page": 1,
+      "pdf": {
+        "tu": "Signature",
+        "flags": { "required": false }
+      }
+    },
+    {
+      "id": "Page2.TextField4",
+      "kind": "text",
+      "label": { "text": "Phone Number" },
+      "page": 2,
+      "pdf": {
+        "tu": "Phone",
+        "flags": { "multiline": false, "required": false }
+      }
+    }
+  ]
+}
