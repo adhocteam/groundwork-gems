@@ -24,7 +24,7 @@ module Groundwork
         template "application_form.rb.tt", "app/application_forms/#{file_name}.rb"
       end
 
-      def create_migration
+      def generate_migration
         migration_template "migration.rb.tt", "db/migrate/create_#{table_name}.rb"
       end
 
