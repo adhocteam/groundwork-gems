@@ -85,6 +85,10 @@ module Groundwork
         )
       end
 
+      def create_flow
+        template "flow.rb.tt", "app/flows/#{file_name}_flow.rb"
+      end
+
       private
 
       def parse_page_range(input)

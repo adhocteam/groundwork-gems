@@ -1,0 +1,20 @@
+<%# rails/forms_rails/lib/generators/groundwork/form/templates/flow.rb.tt %>
+# frozen_string_literal: true
+
+class <%= class_name %>Flow
+  include Groundwork::Forms::Flow
+
+  task :<%= file_name %> do
+<% @step_assignments.each do |step, pages| -%>
+<%   step_sym    = step.tr("-", "_") -%>
+<%   field_names = step_field_names(pages) -%>
+<%   if field_names.empty? -%>
+    question_page :<%= step_sym %>, fields: []
+<%   else -%>
+    question_page :<%= step_sym %>, fields: %i[
+      <%= field_names.join("\n      ") %>
+    ]
+<%   end -%>
+<% end -%>
+  end
+end
