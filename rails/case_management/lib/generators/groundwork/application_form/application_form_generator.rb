@@ -54,8 +54,8 @@ module Groundwork
         when :address       then %W[#{attr.name}_street_line_1:string #{attr.name}_street_line_2:string #{attr.name}_city:string #{attr.name}_state:string #{attr.name}_zip_code:string]
         when :name          then %W[#{attr.name}_first:string #{attr.name}_middle:string #{attr.name}_last:string #{attr.name}_suffix:string]
         when :memorable_date then %W[#{attr.name}_year:integer #{attr.name}_month:integer #{attr.name}_day:integer]
-        when :ein, :tax_id  then %W[#{attr.name}_digits:string]
-        when :money         then %W[#{attr.name}_cents:integer]
+        when :ein, :tax_id  then %W[#{attr.name}:string]
+        when :money         then %W[#{attr.name}:integer]
         else                     %W[#{attr.name}:#{attr.type}]
         end
       end

@@ -1,0 +1,29 @@
+# frozen_string_literal: true
+
+class Create<%= table_name.camelize %> < ActiveRecord::Migration[7.2]
+  def change
+    # NOTE: This uses Postgres' gen_random_uuid() by default.
+    # If your database does not support this function, remove the `default:` option
+    # or replace it with your DB's UUID function.
+    create_table :<%= table_name %>, id: :uuid, default: "gen_random_uuid()" do |t|
+      # --- Groundwork::ApplicationForm base columns ---
+      t.string   :user_id,      null: false
+      t.integer  :status,       null: false, default: 0
+      t.datetime :submitted_at
+
+<% attributes.each do |attr| -%>
+<% columns_for(attr).each do |col| -%>
+<% name, type = col.split(":") -%>
+      t.<%= type %> :<%= name %>
+<% end -%>
+<% end -%>
+
+      t.timestamps null: false
+    end
+
+    add_index :<%= table_name %>, :user_id
+    add_index :<%= table_name %>, :status
+    add_index :<%= table_name %>, :submitted_at
+  end
+end
+

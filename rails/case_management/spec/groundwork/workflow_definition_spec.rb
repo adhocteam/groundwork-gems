@@ -4,7 +4,7 @@ require "spec_helper"
 
 RSpec.describe Groundwork::CaseManagement::WorkflowDefinition do
   let(:stub_job)  { Class.new }
-  let(:stub_task) { Class.new(Groundwork::StaffTask) }
+  let(:stub_task) { Class.new }
 
   subject(:workflow) do
     described_class.new do |w|

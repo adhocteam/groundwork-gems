@@ -1,0 +1,10 @@
+# frozen_string_literal: true
+
+require "rails_helper"
+
+RSpec.describe <%= class_name %>, type: :model do
+  it "inherits from Groundwork::StaffTask" do
+    expect(described_class < Groundwork::StaffTask).to be(true)
+  end
+end
+

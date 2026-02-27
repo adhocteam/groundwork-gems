@@ -84,6 +84,7 @@ module Groundwork
 
       def handle_start_event(event)
         kase = build_case(event)
+        kase.current_step = workflow.start_step.to_s
         kase.save!
         advance(kase, event.class.name.demodulize)
       end

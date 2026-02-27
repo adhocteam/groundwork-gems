@@ -1,0 +1,10 @@
+# frozen_string_literal: true
+
+require "rails_helper"
+
+RSpec.describe <%= class_name %> do
+  it "is a workflow definition" do
+    expect(described_class).to be_a(Groundwork::CaseManagement::WorkflowDefinition)
+  end
+end
+
