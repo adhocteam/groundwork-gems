@@ -15,5 +15,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "groundwork-forms_core", ">= 0.1"
 
   spec.add_development_dependency "rspec", "~> 3.13"
+  spec.add_development_dependency "simplecov", "~> 0.22"
 end
 
