@@ -19,7 +19,7 @@ module Groundwork
       # Returns XXX-XX-1234 masked format for display
       def masked
         return nil if digits.nil?
-        "XXX-XX-#{digits.last(4)}"
+        "XXX-XX-#{digits[-4, 4]}"
       end
 
       def to_s
