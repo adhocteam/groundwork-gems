@@ -1,0 +1,2 @@
+<%# rails/forms_rails/lib/generators/groundwork/form/templates/edit_step.html.erb.tt %>
+<%%= render "edit_page", step: :<%= @current_step %> %>

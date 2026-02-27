@@ -96,6 +96,24 @@ RSpec.describe Groundwork::Generators::FormGenerator do
     end
   end
 
+  describe "step view generation" do
+    it "creates edit_start.html.erb that delegates to _edit_page" do
+      run_generator
+      path = File.join(destination, "app/views/applicant/atf_explosives_licenses/edit_start.html.erb")
+      content = File.read(path)
+      expect(content).to include('render "edit_page", step: :start')
+    end
+
+    it "creates _step_start.html.erb with USWDS field inputs" do
+      run_generator
+      path = File.join(destination, "app/views/applicant/atf_explosives_licenses/_step_start.html.erb")
+      content = File.read(path)
+      expect(content).to include("usa-form-group")
+      expect(content).to include("usa-input")   # for :string fields
+      expect(content).to include("usa-checkbox") # for :boolean fields
+    end
+  end
+
   it "delegates model/migration generation to groundwork:application_form" do
     stub_ask_responses
     generated_args = []

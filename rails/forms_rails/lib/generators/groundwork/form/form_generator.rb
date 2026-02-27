@@ -89,6 +89,26 @@ module Groundwork
         template "flow.rb.tt", "app/flows/#{file_name}_flow.rb"
       end
 
+      def create_step_views
+        ns = options[:namespace]
+        @step_assignments.each do |step, pages|
+          next if pages.nil? || pages.empty?
+
+          @current_step = step.tr("-", "_").to_sym
+          raw_fields    = fields_for_pages(pages)
+          @current_step_attributes = raw_fields.filter_map do |f|
+            a = attr_by_id[f["id"]]
+            next if a.nil? || a[:type] == :skip
+            a.merge(label: tooltip_or_label_for(f))
+          end
+
+          template "edit_step.html.erb.tt",
+                   "app/views/#{ns}/#{plural_name}/edit_#{@current_step}.html.erb"
+          template "step_partial.html.erb.tt",
+                   "app/views/#{ns}/#{plural_name}/_step_#{@current_step}.html.erb"
+        end
+      end
+
       private
 
       def parse_page_range(input)
@@ -119,6 +139,16 @@ module Groundwork
       def step_field_names(pages)
         fields_for_pages(pages)
           .filter_map { |f| attr_by_id[f["id"]]&.then { |a| a[:type] == :skip ? nil : a[:name] } }
+      end
+
+      def plural_name
+        file_name.pluralize
+      end
+
+      def tooltip_or_label_for(field)
+        tu = field.dig("pdf", "tu").to_s
+        tu.empty? ? field.dig("label", "text").to_s : tu
+           .then { |t| t.sub(/\A\d+\.\s*/, "").gsub(/\s*\([^)]*\)/, "").strip }
       end
     end
   end

@@ -1,0 +1,21 @@
+<%# rails/forms_rails/lib/generators/groundwork/form/templates/step_partial.html.erb.tt %>
+<fieldset class="usa-fieldset">
+  <legend class="usa-legend usa-legend--large"><%= @current_step.to_s.humanize %></legend>
+<% @current_step_attributes.each do |attr| -%>
+
+  <div class="usa-form-group">
+<%   if attr[:type] == :boolean -%>
+    <div class="usa-checkbox">
+      <%%= f.check_box :<%= attr[:name] %>, class: "usa-checkbox__input" %>
+      <%%= f.label :<%= attr[:name] %>, "<%= attr[:label] %>", class: "usa-checkbox__label" %>
+    </div>
+<%   elsif attr[:type] == :text -%>
+    <%%= f.label :<%= attr[:name] %>, "<%= attr[:label] %>", class: "usa-label" %>
+    <%%= f.text_area :<%= attr[:name] %>, class: "usa-textarea" %>
+<%   else -%>
+    <%%= f.label :<%= attr[:name] %>, "<%= attr[:label] %>", class: "usa-label" %>
+    <%%= f.text_field :<%= attr[:name] %>, class: "usa-input" %>
+<%   end -%>
+  </div>
+<% end -%>
+</fieldset>
