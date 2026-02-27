@@ -1,4 +1,16 @@
 PATH
+  remote: ../forms_core
+  specs:
+    groundwork-forms_core (0.1.0)
+
+PATH
+  remote: ../forms_rails
+  specs:
+    groundwork-forms_rails (0.1.0)
+      groundwork-forms_core (>= 0.1)
+      rails (>= 7.2)
+
+PATH
   remote: ../government_attributes
   specs:
     groundwork-government_attributes (0.1.0)
@@ -13,6 +25,7 @@ PATH
   remote: .
   specs:
     groundwork-case_management (0.1.0)
+      groundwork-forms_rails (>= 0.1)
       groundwork-government_attributes (>= 0.1)
       groundwork-rules_engine (>= 0.1)
       pundit (>= 2.5)
@@ -109,6 +122,7 @@ GEM
     crass (1.0.6)
     date (3.5.1)
     diff-lcs (1.6.2)
+    docile (1.4.1)
     drb (2.2.3)
     erb (6.0.2)
     erubi (1.13.1)
@@ -247,6 +261,12 @@ GEM
       rack
       ruby_event_store (= 2.18.0)
     securerandom (0.4.1)
+    simplecov (0.22.0)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.13.2)
+    simplecov_json_formatter (0.1.4)
     sqlite3 (2.9.0-arm64-darwin)
     statesman (13.1.0)
     stringio (3.2.0)
@@ -269,9 +289,12 @@ PLATFORMS
 DEPENDENCIES
   factory_bot_rails
   groundwork-case_management!
+  groundwork-forms_core!
+  groundwork-forms_rails!
   groundwork-government_attributes!
   groundwork-rules_engine!
   rspec-rails (~> 7.0)
+  simplecov (~> 0.22)
   sqlite3 (~> 2.0)
 
 CHECKSUMS
@@ -297,6 +320,7 @@ CHECKSUMS
   crass (1.0.6) sha256=dc516022a56e7b3b156099abc81b6d2b08ea1ed12676ac7a5657617f012bd45d
   date (3.5.1) sha256=750d06384d7b9c15d562c76291407d89e368dda4d4fff957eb94962d325a0dc0
   diff-lcs (1.6.2) sha256=9ae0d2cba7d4df3075fe8cd8602a8604993efc0dfa934cff568969efb1909962
+  docile (1.4.1) sha256=96159be799bfa73cdb721b840e9802126e4e03dfc26863db73647204c727f21e
   drb (2.2.3) sha256=0b00d6fdb50995fe4a45dea13663493c841112e4068656854646f418fda13373
   erb (6.0.2) sha256=9fe6264d44f79422c87490a1558479bd0e7dad4dd0e317656e67ea3077b5242b
   erubi (1.13.1) sha256=a082103b0885dbc5ecf1172fede897f9ebdb745a4b97a5e8dc63953db1ee4ad9
@@ -304,6 +328,8 @@ CHECKSUMS
   factory_bot_rails (6.5.1) sha256=d3cc4851eae4dea8a665ec4a4516895045e710554d2b5ac9e68b94d351bc6d68
   globalid (1.3.0) sha256=05c639ad6eb4594522a0b07983022f04aa7254626ab69445a0e493aa3786ff11
   groundwork-case_management (0.1.0)
+  groundwork-forms_core (0.1.0)
+  groundwork-forms_rails (0.1.0)
   groundwork-government_attributes (0.1.0)
   groundwork-rules_engine (0.1.0)
   i18n (1.14.8) sha256=285778639134865c5e0f6269e0b818256017e8cde89993fdfcbfb64d088824a5
@@ -350,6 +376,9 @@ CHECKSUMS
   ruby_event_store-active_record (2.18.0) sha256=f9277b3cbf894c360de2bc578193e7922fa4f9e24a7abb10cadd8a20885253d4
   ruby_event_store-browser (2.18.0) sha256=76fc40ce27bc038e9ac8dddb1375ea3e78b36f8565626cb1bdf0d2ae523b592d
   securerandom (0.4.1) sha256=cc5193d414a4341b6e225f0cb4446aceca8e50d5e1888743fac16987638ea0b1
+  simplecov (0.22.0) sha256=fe2622c7834ff23b98066bb0a854284b2729a569ac659f82621fc22ef36213a5
+  simplecov-html (0.13.2) sha256=bd0b8e54e7c2d7685927e8d6286466359b6f16b18cb0df47b508e8d73c777246
+  simplecov_json_formatter (0.1.4) sha256=529418fbe8de1713ac2b2d612aa3daa56d316975d307244399fa4838c601b428
   sqlite3 (2.9.0-arm64-darwin) sha256=a917bd9b84285766ff3300b7d79cd583f5a067594c8c1263e6441618c04a6ed3
   statesman (13.1.0) sha256=3ecb78466dfd2682e433f335a7722aa0e5b8c6853d72d83e460151b8af17a84e
   stringio (3.2.0) sha256=c37cb2e58b4ffbd33fe5cd948c05934af997b36e0b6ca6fdf43afa234cf222e1
