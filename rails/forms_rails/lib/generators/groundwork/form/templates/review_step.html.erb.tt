@@ -1,0 +1,55 @@
+<%# rails/forms_rails/lib/generators/groundwork/form/templates/review_step.html.erb.tt %>
+<div class="grid-container">
+  <div class="grid-row grid-gap">
+    <div class="grid-col-12">
+      <%%= render "step_indicator", current_step: :<%= @review_step %> %>
+
+      <%% if @form.errors.any? %>
+        <div class="usa-alert usa-alert--error margin-bottom-2" role="alert">
+          <div class="usa-alert__body">
+            <h4 class="usa-alert__heading">Please fix the following errors</h4>
+            <ul class="usa-list">
+              <%% @form.errors.full_messages.each do |msg| %>
+                <li><%%= msg %></li>
+              <%% end %>
+            </ul>
+          </div>
+        </div>
+      <%% end %>
+
+      <h2 class="font-heading-lg">Review your application</h2>
+      <p class="usa-intro">Review the information below before submitting.</p>
+
+<% @step_assignments.each do |step, pages| -%>
+<%   next if pages.nil? || pages.empty? -%>
+<%   step_sym = step.tr("-", "_") -%>
+<%   step_attrs = fields_for_pages(pages).filter_map { |f| attr_by_id[f["id"]] }.reject { |a| a[:type] == :skip } -%>
+      <div class="usa-summary-box margin-bottom-4">
+        <div class="usa-summary-box__body">
+          <h3 class="usa-summary-box__heading"><%= step.tr("-", " ").capitalize %></h3>
+          <div class="usa-summary-box__text">
+<%   step_attrs.each do |attr| -%>
+            <p><strong><%= attr[:name].tr("_", " ").capitalize %>:</strong> <%%= @form.<%= attr[:name] %> || "—" %></p>
+<%   end -%>
+          </div>
+        </div>
+      </div>
+<% end -%>
+
+      <div class="usa-alert usa-alert--warning usa-alert--slim margin-bottom-4">
+        <div class="usa-alert__body">
+          <p class="usa-alert__text">
+            By submitting this application you certify that the information provided is accurate and complete.
+          </p>
+        </div>
+      </div>
+
+      <div class="margin-top-4">
+        <%%= button_to "Submit application",
+                      { action: :submit, id: @form.id },
+                      method: :post,
+                      class: "usa-button" %>
+      </div>
+    </div>
+  </div>
+</div>

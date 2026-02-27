@@ -114,6 +114,27 @@ RSpec.describe Groundwork::Generators::FormGenerator do
     end
   end
 
+  describe "review step generation" do
+    it "creates a review step view for the blank-assigned step" do
+      run_generator
+      path = File.join(destination, "app/views/applicant/atf_explosives_licenses/edit_review_submit.html.erb")
+      expect(File.exist?(path)).to be(true)
+    end
+
+    it "review view includes a submit button" do
+      run_generator
+      content = File.read(File.join(destination, "app/views/applicant/atf_explosives_licenses/edit_review_submit.html.erb"))
+      expect(content).to include("usa-button")
+      expect(content).to include("submit")
+    end
+
+    it "review view includes the certification notice" do
+      run_generator
+      content = File.read(File.join(destination, "app/views/applicant/atf_explosives_licenses/edit_review_submit.html.erb"))
+      expect(content).to include("certify")
+    end
+  end
+
   it "delegates model/migration generation to groundwork:application_form" do
     stub_ask_responses
     generated_args = []

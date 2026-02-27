@@ -109,6 +109,16 @@ module Groundwork
         end
       end
 
+      def create_review_view
+        ns = options[:namespace]
+        review_step = @step_assignments.find { |_, pages| pages.nil? || pages.empty? }&.first
+        return unless review_step
+
+        @review_step = review_step.tr("-", "_").to_sym
+        template "review_step.html.erb.tt",
+                 "app/views/#{ns}/#{plural_name}/edit_#{@review_step}.html.erb"
+      end
+
       private
 
       def parse_page_range(input)
