@@ -2,6 +2,15 @@
 
 This repository contains the Groundwork Ruby gems for form workflows, case management, policy rules, and government data attributes.
 
+## Migration note
+
+If you reference gems from this monorepo by local path in a host app `Gemfile`, update:
+- `rails/case_management` -> `case_management`
+- `rails/forms_core` -> `forms_core`
+- `rails/forms_rails` -> `forms_rails`
+- `rails/government_attributes` -> `government_attributes`
+- `rails/rules_engine` -> `rules_engine`
+
 ## Gems
 
 - [`case_management`](./case_management)  
