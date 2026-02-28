@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+repo_root="$(cd "${script_dir}/.." && pwd)"
+
+gems=(
+  case_management
+  forms_core
+  forms_rails
+  government_attributes
+  rules_engine
+)
+
+if ! command -v bundle >/dev/null 2>&1; then
+  echo "Error: bundle command not found. Please install Bundler and ensure it is in PATH." >&2
+  exit 1
+fi
+
+for gem in "${gems[@]}"; do
+  gem_dir="${repo_root}/${gem}"
+  if [[ ! -d "${gem_dir}" ]]; then
+    echo "Error: Missing gem directory: ${gem_dir}" >&2
+    exit 1
+  fi
+
+  echo "==> Running tests for ${gem}"
+  (
+    cd "${gem_dir}"
+    bundle install
+    bundle exec rspec --format progress
+  )
+  echo "==> Completed ${gem}"
+  echo
+ done
