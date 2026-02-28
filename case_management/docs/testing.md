@@ -10,7 +10,7 @@ Workflow definitions are pure Ruby objects; they can be tested without database 
 - transitions resolve to expected next steps
 - `to_mermaid` output includes expected nodes/edges
 
-See `rails/case_management/spec/groundwork/workflow_definition_spec.rb` for an example.
+See `case_management/spec/groundwork/workflow_definition_spec.rb` for an example.
 
 ## Testing routers
 
@@ -33,4 +33,3 @@ Task queues are easiest to test at the model level:
 
 - scope results (`.overdue`, `.unassigned`, `.assigned_to`)
 - transactional assignment behavior (`.assign_next_to`)
-

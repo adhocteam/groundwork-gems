@@ -22,7 +22,7 @@ If you’re integrating this into a host Rails app, start with `docs/README.md`.
 
 ```ruby
 # Gemfile
-gem "groundwork-case_management", path: "rails/case_management"
+ gem "groundwork-case_management", path: "case_management"
 ```
 
 ### Option B: As a published gem
@@ -73,6 +73,5 @@ PermitWorkflowRouter.register!
 From the repo root:
 
 ```bash
-bundle exec rspec rails/case_management/spec
+bundle exec rspec case_management/spec
 ```
-

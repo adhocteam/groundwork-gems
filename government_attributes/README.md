@@ -109,7 +109,7 @@ end
 Run specs for this gem:
 
 ```sh
-cd rails/government_attributes
+cd government_attributes
 bundle install
 bundle exec rspec
 ```

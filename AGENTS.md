@@ -35,3 +35,20 @@ Before running a multi-step implementation plan, confirm you are in the correct 
 
 - !: Prefer `gh pr create --body-file <file>` or `gh pr create --body-file - <<'EOF' ... EOF` instead of inline `--body` when content includes backticks or shell-sensitive characters.
 - ~: Use single-quoted heredocs (`<<'EOF'`) for PR bodies to avoid accidental command interpolation.
+
+- !: For verification commands, always use `gh --no-pager ...` (or `GH_PAGER=cat gh ...`) to avoid pager hangs.
+
+## Local Ruby sanity check
+
+Run this before `bundle install` or `bin/test-all-gems`:
+
+```bash
+which ruby
+ruby -v
+which bundle
+bundle -v
+ruby -e 'require "date"; puts Date.today'
+bundle env | rg -n "Ruby|RubyGems|Gem Home|Gem Path"
+```
+
+If `require "date"` fails or Ruby/Bundler paths disagree, fix local Ruby manager setup first.
