@@ -1,4 +1,4 @@
-<%# rails/forms_rails/lib/generators/groundwork/form/templates/flow.rb.tt %>
+<%# forms_rails/lib/generators/groundwork/form/templates/flow.rb.tt %>
 # frozen_string_literal: true
 
 class <%= class_name %>Flow

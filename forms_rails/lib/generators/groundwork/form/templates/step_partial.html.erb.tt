@@ -1,4 +1,4 @@
-<%# rails/forms_rails/lib/generators/groundwork/form/templates/step_partial.html.erb.tt %>
+<%# forms_rails/lib/generators/groundwork/form/templates/step_partial.html.erb.tt %>
 <fieldset class="usa-fieldset">
   <legend class="usa-legend usa-legend--large"><%= @current_step.to_s.humanize %></legend>
 <% @current_step_attributes.each do |attr| -%>

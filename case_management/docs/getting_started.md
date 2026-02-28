@@ -13,7 +13,7 @@ After reading this guide, you will know:
 ### From this repo (local path)
 
 ```ruby
-gem "groundwork-case_management", path: "rails/case_management"
+gem "groundwork-case_management", path: "case_management"
 ```
 
 ### From RubyGems
@@ -109,4 +109,3 @@ That event name must match the `on:` string you declared in your `WorkflowDefini
 
 - Read `workflows.md` for the DSL and router behavior
 - Read `events.md` for payload conventions
-

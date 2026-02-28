@@ -1,4 +1,4 @@
-<%# rails/forms_rails/lib/generators/groundwork/form/templates/review_step.html.erb.tt %>
+<%# forms_rails/lib/generators/groundwork/form/templates/review_step.html.erb.tt %>
 <div class="grid-container">
   <div class="grid-row grid-gap">
     <div class="grid-col-12">
